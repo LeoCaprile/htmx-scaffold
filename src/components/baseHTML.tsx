@@ -1,9 +1,9 @@
 import Html from "@kitajs/html";
 
-const BaseHTML = ({
+export const BaseHTML = ({
   children,
-  title,
-}: Html.PropsWithChildren<{ title: string }>) => (
+  title = "Webapp",
+}: Html.PropsWithChildren<{ title?: string }>) => (
   <>
     <html lang="es">
       <head>
