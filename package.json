@@ -3,7 +3,7 @@
   "version": "1.0.50",
   "scripts": {
     "test": "xss-scan",
-    "dev": "bun run --watch src/main.tsx"
+    "dev": "concurrently \"bun run --hot src/main.ts\" \"unocss --watch\""
   },
   "dependencies": {
     "@elysiajs/html": "^0.7.3",
@@ -17,7 +17,9 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "concurrently": "^8.2.1",
+    "unocss": "^0.56.5"
   },
   "module": "src/main.js"
 }

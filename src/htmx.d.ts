@@ -1,6 +1,7 @@
+// DISCLAIMER:
 // THIS CODE WAS COPIED FROM https://github.com/ethanniser/beth-b2b-saas/blob/main/src/types/htmx.d.ts
 // AND IS NOT MY OWN WORK (though I did modify it a bit)
-// AND ADDED OTHER TYPES FOR HTMX.
+// THANKS ETHAN
 
 type RoutesByType<
   Schema extends Record<string, any>, // Ensure keys are strings
