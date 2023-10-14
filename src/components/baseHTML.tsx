@@ -12,7 +12,7 @@ export const BaseHTML = ({
         <script src="/public/htmx@1.9.6.min.js" />
         <title>{title}</title>
       </head>
-      <body>{children}</body>
+      <body hx-boost="true">{children}</body>
     </html>
   </>
 );
