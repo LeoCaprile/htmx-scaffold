@@ -9,5 +9,5 @@ const app = new Elysia().use(staticPlugin()).use(ctx).use(pages).listen(3200);
 export type App = typeof app;
 
 console.log(
-  `🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port}`
+	`🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port}`
 );
