@@ -9,11 +9,17 @@ export const BaseHTML = ({
 			<head>
 				<meta charset="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<link
+					rel="stylesheet"
+					href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css"
+				/>
 				<link rel="stylesheet" href="/public/dist/unocss.css" />
 				<script src="/public/htmx@1.9.6.min.js" />
 				<title>{title}</title>
 			</head>
-			<body hx-boost="true">{children}</body>
+			<body class="h-100vh w-100vw" hx-boost="true">
+				{children}
+			</body>
 		</html>
 	</>
 );
