@@ -4,10 +4,12 @@ import { staticPlugin } from "@elysiajs/static";
 import { ctx } from "./context";
 import { pages } from "./pages";
 import { env } from "./config";
+import { controllers } from "./controllers";
 
 const app = new Elysia()
 	.use(staticPlugin())
 	.use(ctx)
+	.use(controllers)
 	.use(pages)
 	.listen(env.PORT);
 
