@@ -1,5 +1,5 @@
 {
-	"exclude": ["public"],
+	"exclude": ["public, node_modules"],
 	"compilerOptions": {
 		"lib": ["ESNext"],
 		"module": "esnext",
