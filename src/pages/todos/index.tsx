@@ -1,16 +1,17 @@
-// route: /
 import Elysia from "elysia";
-import { ctx } from "../context";
-import { FormButton } from "../components/FormButton";
-import { Item } from "../components/Item";
+import { ctx } from "../../context";
+import { FormButton } from "../../components/FormButton";
+import { Item } from "../../components/Item";
+import { protectedRoute } from "../../auth/protectedPage";
 
-export const pages = new Elysia({ name: "@app/pages" })
+export const todoPage = new Elysia({ name: "@app/pages" })
 	.use(ctx)
-	.get("/", async ({ renderPage, db }) => {
+	.use(protectedRoute)
+	.get("/todos", async ({ renderPage, db }) => {
 		const todos = await db.query.todos.findMany();
 
 		return renderPage(
-			"Home",
+			"Todos",
 			<div class="grid place-content-center w-full h-full">
 				<h1 class="text-center">Todos</h1>
 

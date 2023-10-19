@@ -13,6 +13,9 @@ export const ws = new Elysia()
 			});
 		},
 	})
-	.listen(3020);
+	.listen(3020)
+	.onStop(() => {
+		watcher.close();
+	});
 
 console.log("Watcher listen on 3020");

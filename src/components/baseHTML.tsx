@@ -21,9 +21,7 @@ export const BaseHTML = ({
 				<script src="/public/htmx@1.9.6.min.js" />
 				<title>{title}</title>
 			</head>
-			<body class="h-100vh w-100vw" hx-boost="true">
-				{children}
-			</body>
+			<body class="h-100vh w-100vw">{children}</body>
 		</html>
 	</>
 );
