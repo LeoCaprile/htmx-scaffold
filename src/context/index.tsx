@@ -12,6 +12,10 @@ export const ctx = new Elysia({
 	.decorate("db", db)
 	.derive((ctx) => {
 		const renderPage = (title: string, children: JSX.Element) =>
-			ctx.html(<BaseHTML title={title}>{children}</BaseHTML>);
+			ctx.html(
+				<BaseHTML isLoggedIn={ctx.session !== null} title={title}>
+					{children}
+				</BaseHTML>
+			);
 		return { renderPage };
 	});

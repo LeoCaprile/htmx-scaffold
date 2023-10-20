@@ -1,4 +1,5 @@
 import { defineConfig, presetUno } from "unocss";
+import presetIcons from "@unocss/preset-icons";
 
 export default defineConfig({
 	cli: {
@@ -7,5 +8,5 @@ export default defineConfig({
 			outFile: "public/dist/unocss.css",
 		},
 	},
-	presets: [presetUno()],
+	presets: [presetUno(), presetIcons()],
 });
