@@ -1,13 +1,131 @@
-import Elysia from "elysia";
+import Elysia, { t } from "elysia";
 import { ctx } from "../context";
 import { redirect } from "../lib";
 import { googleAuth } from "../auth/lucia";
 import { parseCookie, serializeCookie } from "lucia/utils";
 import { env } from "../config";
 import { OAuthRequestError } from "@lucia-auth/oauth";
+import { LuciaError } from "lucia";
+import { generateFromEmail } from "unique-username-generator";
 
 export const authController = new Elysia({ name: "@app/auth", prefix: "/auth" })
 	.use(ctx)
+	.post(
+		"/singin",
+		async (ctx) => {
+			const authRequest = ctx.auth.handleRequest(ctx);
+			const session = await authRequest.validate();
+			if (session) {
+				redirect(
+					{
+						set: ctx.set,
+						headers: ctx.headers,
+					},
+					"/"
+				);
+				return;
+			}
+
+			const { email, password } = ctx.body as {
+				email: string;
+				password: string;
+			};
+
+			try {
+				const key = await ctx.auth.useKey("email", email, password);
+				const user = await ctx.auth.getUser(key.userId);
+
+				const session = await ctx.auth.createSession({
+					userId: user.userId,
+					attributes: {},
+				});
+				const sessionCookie = ctx.auth.createSessionCookie(session);
+
+				ctx.set.headers["Set-Cookie"] = sessionCookie.serialize();
+				redirect(
+					{
+						set: ctx.set,
+						headers: ctx.headers,
+					},
+					"/todos"
+				);
+			} catch (e) {
+				if (e instanceof LuciaError && e.message === "AUTH_INVALID_KEY_ID") {
+					console.log(e);
+				}
+				if (e instanceof LuciaError && e.message === "AUTH_INVALID_PASSWORD") {
+					console.log(e);
+				}
+			}
+		},
+		{
+			body: t.Object({
+				email: t.String(),
+				password: t.String(),
+			}),
+		}
+	)
+	.post(
+		"/signup",
+		async (ctx) => {
+			const authRequest = ctx.auth.handleRequest(ctx);
+			const session = await authRequest.validate();
+
+			if (session) {
+				redirect(
+					{
+						set: ctx.set,
+						headers: ctx.headers,
+					},
+					"/"
+				);
+				return;
+			}
+
+			const { email, password } = ctx.body;
+
+			try {
+				const user = await ctx.auth.createUser({
+					key: {
+						providerId: "email",
+						providerUserId: email,
+						password,
+					},
+					attributes: {
+						email,
+						name: generateFromEmail(email, 3),
+						picture: "",
+					},
+				});
+
+				const session = await ctx.auth.createSession({
+					userId: user.userId,
+					attributes: {},
+				});
+				const sessionCookie = ctx.auth.createSessionCookie(session);
+
+				ctx.set.headers["Set-Cookie"] = sessionCookie.serialize();
+				redirect(
+					{
+						set: ctx.set,
+						headers: ctx.headers,
+					},
+					"/todos"
+				);
+			} catch (e) {
+				if (e instanceof LuciaError && e.message === "AUTH_DUPLICATE_KEY_ID") {
+					console.error(e);
+				}
+			}
+		},
+		{
+			body: t.Object({
+				email: t.String(),
+				password: t.String(),
+			}),
+		}
+	)
+
 	.get("/signout", async (ctx) => {
 		const authRequest = ctx.auth.handleRequest(ctx);
 		const session = await authRequest.validate();

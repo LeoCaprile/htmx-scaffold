@@ -1,12 +1,10 @@
 import Html from "@kitajs/html";
 import { env } from "../config";
-import { Navbar } from "./Navbar";
 
 export const BaseHTML = ({
 	children,
 	title,
-	isLoggedIn,
-}: Html.PropsWithChildren<{ title: string; isLoggedIn: boolean }>) => (
+}: Html.PropsWithChildren<{ title: string }>) => (
 	<>
 		<html class="h-full" lang="es">
 			<head>
@@ -23,10 +21,7 @@ export const BaseHTML = ({
 				<script src="/public/htmx@1.9.6.min.js" />
 				<title>{title}</title>
 			</head>
-			<body class="flex-col h-full">
-				<Navbar isLoggedIn={isLoggedIn} />
-				{children}
-			</body>
+			<body class="flex-col h-full">{children}</body>
 		</html>
 	</>
 );

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "test": "xss-scan",
-    "dev": "concurrently \"bun --hot run src/main.ts\" \"unocss --watch\" \"bun run src/reload/index.ts\"",
+    "dev": "concurrently \"bun --hot run src/main.ts\" \"unocss --watch\" \"bun run reload/index.ts\"",
     "db:push": "drizzle-kit push:sqlite",
     "db:drop": "drizzle-kit drop"
   },
@@ -22,6 +22,7 @@
     "eslint": "latest",
     "lucia": "^2.6.0",
     "typed-htmx": "^0.2.0",
+    "unique-username-generator": "^1.2.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

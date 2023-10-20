@@ -4,9 +4,9 @@ import { TextInput } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { GoogleButton } from "../../components/GoogleButton";
 
-export const SignInPage = new Elysia()
+export const SignUpPage = new Elysia()
 	.use(ctx)
-	.get("/signIn", ({ session, renderPage, set }) => {
+	.get("/signUp", ({ session, renderPage, set }) => {
 		if (session) {
 			set.redirect = "/";
 			return;
@@ -16,14 +16,14 @@ export const SignInPage = new Elysia()
 			"Sign In",
 			<div class="grid place-content-center h-100vh">
 				<div class="flex flex-col gap-5 p-5 b-2 b-coolGray-2 rounded">
-					<h1 class="text-center text-2xl">Sign In</h1>
+					<h1 class="text-center text-2xl">Sign Up</h1>
 
-					<form hx-post="/api/auth/singin" hx-swap="none" class="flex flex-col">
+					<form hx-post="/api/auth/signup" hx-swap="none" class="flex flex-col">
 						<TextInput
 							label="Email"
 							placeholder="type here..."
 							name="email"
-							type="text"
+							type="email"
 						/>
 						<TextInput
 							label="Password"
@@ -31,7 +31,7 @@ export const SignInPage = new Elysia()
 							name="password"
 							type="password"
 						/>
-						<Button type="submit">Sign In</Button>
+						<Button type="submit">Sign Up</Button>
 					</form>
 
 					<a class="flex flex-col" href="api/auth/login/google">

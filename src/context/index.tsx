@@ -3,6 +3,7 @@ import { html as htmlPlugin } from "@elysiajs/html";
 import Elysia from "elysia";
 import { db } from "../db";
 import { authed } from "../auth/middleware";
+import { Navbar } from "../components/Navbar";
 
 export const ctx = new Elysia({
 	name: "@app/ctx",
@@ -13,7 +14,8 @@ export const ctx = new Elysia({
 	.derive((ctx) => {
 		const renderPage = (title: string, children: JSX.Element) =>
 			ctx.html(
-				<BaseHTML isLoggedIn={ctx.session !== null} title={title}>
+				<BaseHTML title={title}>
+					<Navbar session={ctx.session} />
 					{children}
 				</BaseHTML>
 			);
