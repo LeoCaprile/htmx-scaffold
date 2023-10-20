@@ -14,7 +14,6 @@ export function Navbar({ isLoggedIn }: NavbarProps) {
 			) : (
 				<div class="flex gap-5">
 					<a href="/signIn">Sign In</a>
-					<a href="/signUp">Sign Up</a>
 				</div>
 			)}
 		</nav>
