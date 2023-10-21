@@ -2,12 +2,11 @@ import Elysia from "elysia";
 import { ctx } from "../../context";
 import { FormButton } from "../../components/FormButton";
 import { Item } from "../../components/Item";
-import { protectedRoute } from "../../auth/protectedPage";
+import { protectedRoute } from "../../auth/protectedRoute";
 
-export const todoPage = new Elysia({ name: "@app/pages" })
-	.use(ctx)
-	.use(protectedRoute)
-	.get("/todos", async ({ renderPage, db }) => {
+export const todoPage = new Elysia({ name: "@app/pages" }).use(ctx).get(
+	"/todos",
+	async ({ renderPage, db }) => {
 		const todos = await db.query.todos.findMany();
 
 		return renderPage(
@@ -42,4 +41,6 @@ export const todoPage = new Elysia({ name: "@app/pages" })
 				</form>
 			</div>
 		);
-	});
+	},
+	protectedRoute
+);
