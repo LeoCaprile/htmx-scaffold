@@ -9,8 +9,7 @@ export const ProfilePage = new Elysia().use(ctx).get(
 	async ({ renderPage, auth, session }) => {
 		if (session === null) return;
 
-		const user = await auth.getUser(session.user.userId);
-
+		const user = session.user;
 		console.log(user);
 
 		return renderPage(
@@ -22,7 +21,12 @@ export const ProfilePage = new Elysia().use(ctx).get(
 						You can change your name here and add a picture.
 					</p>
 
-					<form hx-swap="none" class="flex flex-col">
+					<form
+						hx-put="/api/user/profile"
+						hx-swap="none"
+						class="flex flex-col"
+						enctype="multipart/form-data"
+					>
 						<TextInput
 							label="Email"
 							placeholder="type here..."
@@ -47,6 +51,7 @@ export const ProfilePage = new Elysia().use(ctx).get(
 								Profile picture
 							</label>
 							<input
+								name="profilePicture"
 								class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
 								id="small_size"
 								type="file"

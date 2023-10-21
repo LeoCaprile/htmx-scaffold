@@ -20,6 +20,7 @@
     "drizzle-orm": "^0.28.6",
     "elysia": "latest",
     "eslint": "latest",
+    "js-base64": "^3.7.5",
     "lucia": "^2.6.0",
     "typed-htmx": "^0.2.0",
     "unique-username-generator": "^1.2.0",
