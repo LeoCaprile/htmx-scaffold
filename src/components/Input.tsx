@@ -3,6 +3,8 @@ type TextInputProps = {
 	name: string;
 	type: string;
 	placeholder: string;
+	disabled?: boolean;
+	value?: string;
 };
 
 export const TextInput = ({
@@ -10,6 +12,8 @@ export const TextInput = ({
 	name,
 	placeholder,
 	type,
+	disabled,
+	value,
 }: TextInputProps) => {
 	return (
 		<div class="mb-6">
@@ -23,8 +27,12 @@ export const TextInput = ({
 				type={type}
 				id={name}
 				name={name}
-				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+				value={value ?? ""}
+				class={`${
+					disabled ? "bg-gray-100" : "bg-gray-50"
+				} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
 				placeholder={placeholder}
+				disabled={disabled}
 				required="true"
 			/>
 		</div>

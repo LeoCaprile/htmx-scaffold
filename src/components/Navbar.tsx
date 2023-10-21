@@ -1,10 +1,22 @@
 import { Session } from "lucia";
+import { Dropdown } from "./Dropdown";
 
 type NavbarProps = {
 	session: Session | null;
 };
 
 export function Navbar({ session }: NavbarProps) {
+	const accountSettingsItems = [
+		{
+			label: "Profile",
+			href: "/user/profile",
+		},
+		{
+			label: "Sign Out",
+			href: "/api/auth/signout",
+		},
+	];
+
 	return (
 		<nav class="flex text-xl justify-between px-8 py-5 bg-coolGray text-white">
 			<h1 class="flex items-center">
@@ -20,7 +32,7 @@ export function Navbar({ session }: NavbarProps) {
 							src={session.user.picture}
 						/>
 					</div>
-					<a href="api/auth/signout">Sign Out</a>
+					<Dropdown title="Account Settings" items={accountSettingsItems} />
 				</div>
 			) : (
 				<div class="flex gap-5">
