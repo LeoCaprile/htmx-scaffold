@@ -19,7 +19,7 @@ export const BaseHTML = ({
 					<script src="/public/liveReload.js"></script>
 				)}
 				<script src="/public/htmx@1.9.6.min.js" />
-				<title>{title}</title>
+				<title safe>{title}</title>
 			</head>
 			<body class="flex-col h-full">{children}</body>
 		</html>

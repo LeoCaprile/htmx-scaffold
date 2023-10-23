@@ -31,7 +31,7 @@ export function Navbar({ session }: NavbarProps) {
 						hx-target="this"
 						class="flex items-center p-1 gap-2"
 					>
-						<div>Logged as {session.user.name}</div>
+						<div safe>Logged as {session.user.name}</div>
 						<img
 							class="rounded-999 w-10 b-black b-1"
 							src={session.user.picture}

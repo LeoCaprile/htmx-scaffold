@@ -16,7 +16,7 @@ export const authController = new Elysia({ name: "@app/auth", prefix: "/auth" })
 		}
 		return (
 			<>
-				<div>Logged as {session.user.name}</div>
+				<div safe>Logged as {session.user.name}</div>
 				<img class="rounded-999 w-10 b-black b-1" src={session.user.picture} />
 			</>
 		);
