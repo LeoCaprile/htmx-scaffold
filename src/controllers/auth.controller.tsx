@@ -10,6 +10,17 @@ import { generateFromEmail } from "unique-username-generator";
 
 export const authController = new Elysia({ name: "@app/auth", prefix: "/auth" })
 	.use(ctx)
+	.get("/getSession", ({ session }) => {
+		if (!session) {
+			return null;
+		}
+		return (
+			<>
+				<div>Logged as {session.user.name}</div>
+				<img class="rounded-999 w-10 b-black b-1" src={session.user.picture} />
+			</>
+		);
+	})
 	.post(
 		"/singin",
 		async (ctx) => {

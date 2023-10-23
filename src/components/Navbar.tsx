@@ -25,7 +25,12 @@ export function Navbar({ session }: NavbarProps) {
 
 			{session !== null ? (
 				<div class="flex items-center gap-5">
-					<div class="flex items-center p-1 gap-2">
+					<div
+						hx-trigger="get-session from:body"
+						hx-get="/api/auth/getSession"
+						hx-target="this"
+						class="flex items-center p-1 gap-2"
+					>
 						<div>Logged as {session.user.name}</div>
 						<img
 							class="rounded-999 w-10 b-black b-1"

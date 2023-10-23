@@ -33,7 +33,7 @@ export const userController = new Elysia().use(ctx).put(
 				.where(eq(user.id, ctx.session?.user.id));
 		}
 
-		ctx.set.headers["HX-Trigger"] = "get-user";
+		ctx.set.headers["HX-Trigger"] = "get-session";
 	},
 	{
 		body: t.Object({

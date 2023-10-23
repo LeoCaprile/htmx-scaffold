@@ -1,6 +1,5 @@
 import Elysia from "elysia";
 import { ctx } from "../../context";
-import { FormButton } from "../../components/FormButton";
 import { Item } from "../../components/Item";
 import { protectedRoute } from "../../auth/protectedRoute";
 import { Button } from "../../components/Button";
