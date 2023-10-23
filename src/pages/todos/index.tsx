@@ -3,6 +3,8 @@ import { ctx } from "../../context";
 import { FormButton } from "../../components/FormButton";
 import { Item } from "../../components/Item";
 import { protectedRoute } from "../../auth/protectedRoute";
+import { Button } from "../../components/Button";
+import { TextInput } from "../../components/Input";
 
 export const todoPage = new Elysia({ name: "@app/pages" }).use(ctx).get(
 	"/todos",
@@ -12,10 +14,31 @@ export const todoPage = new Elysia({ name: "@app/pages" }).use(ctx).get(
 		return renderPage(
 			"Todos",
 			<div class="grid place-content-center w-full h-full">
-				<h1 class="text-center">Todos</h1>
-
+				<h1 class="text-center text-3xl">Todos</h1>
+				<form class="flex gap-5" hx-target="#todos" hx-swap="beforeend">
+					<div class="flex items-center ">
+						<TextInput
+							label="Enter your todo"
+							placeholder=""
+							type="text"
+							name="title"
+						/>
+						<Button
+							hx-post="/api/addTodo"
+							hx-indicator="#spinner"
+							type="submit"
+							className="my-3 ml-3 flex items-center gap-2"
+						>
+							Add Todo
+							<div
+								id="spinner"
+								class="htmx-indicator text-xl i-material-symbols-circles-ext-outline animate-spin"
+							></div>
+						</Button>
+					</div>
+				</form>
 				<ul
-					class="flex flex-col items-center"
+					class="flex flex-col items-start h-2xl gap-5 p-2 overflow-y-auto "
 					hx-get="/api/getTodos"
 					hx-trigger="get-todo from:body"
 					id="todos"
@@ -24,21 +47,6 @@ export const todoPage = new Elysia({ name: "@app/pages" }).use(ctx).get(
 						<Item id={todo.id} title={todo.title} />
 					))}
 				</ul>
-
-				<form
-					class="flex gap-5"
-					method="POST"
-					hx-target="#todos"
-					hx-swap="beforeend"
-				>
-					<input
-						placeholder="enter your todo"
-						class="b-black b-2 b-solid w-40"
-						type="text"
-						name="title"
-					/>
-					<FormButton text="Add" />
-				</form>
 			</div>
 		);
 	},

@@ -6,7 +6,7 @@ import { protectedRoute } from "../../auth/protectedRoute";
 
 export const ProfilePage = new Elysia().use(ctx).get(
 	"/user/profile",
-	async ({ renderPage, auth, session }) => {
+	async ({ renderPage, session }) => {
 		if (session === null) return;
 
 		const user = session.user;
