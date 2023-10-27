@@ -24,6 +24,7 @@ export const authController = new Elysia({ name: "@app/auth", prefix: "/auth" })
 	.post(
 		"/singin",
 		async (ctx) => {
+			ctx.log.info("Signin");
 			const authRequest = ctx.auth.handleRequest(ctx);
 			const session = await authRequest.validate();
 			if (session) {
@@ -60,12 +61,14 @@ export const authController = new Elysia({ name: "@app/auth", prefix: "/auth" })
 					},
 					"/todos"
 				);
+
+				ctx.log.info("Signin successful");
 			} catch (e) {
 				if (e instanceof LuciaError && e.message === "AUTH_INVALID_KEY_ID") {
-					console.log(e);
+					ctx.log.error(e);
 				}
 				if (e instanceof LuciaError && e.message === "AUTH_INVALID_PASSWORD") {
-					console.log(e);
+					ctx.log.error(e);
 				}
 			}
 		},

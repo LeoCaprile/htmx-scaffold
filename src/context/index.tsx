@@ -5,11 +5,13 @@ import { db } from "../db";
 import { authed } from "../auth/middleware";
 import { Navbar } from "../components/Navbar";
 import { utapi } from "../db/files/uploadthing";
+import { loggerPlugin } from "./logger";
 
 export const ctx = new Elysia({
 	name: "@app/ctx",
 })
 	.use(htmlPlugin())
+	.use(loggerPlugin)
 	.use(authed)
 	.decorate("utapi", utapi)
 	.decorate("db", db)

@@ -8,6 +8,7 @@
     "db:drop": "drizzle-kit drop"
   },
   "dependencies": {
+    "@bogeychan/elysia-logger": "^0.0.12",
     "@elysiajs/html": "^0.7.3",
     "@elysiajs/static": "^0.7.1",
     "@iconify-json/material-symbols": "^1.1.60",
@@ -19,9 +20,10 @@
     "await-to-js": "^3.0.0",
     "chokidar": "^3.5.3",
     "drizzle-orm": "^0.28.6",
-    "elysia": "latest",
+    "elysia": "0.7.16",
     "eslint": "latest",
     "lucia": "^2.6.0",
+    "pino-pretty": "^10.2.3",
     "short-uuid": "^4.2.2",
     "typed-htmx": "^0.2.0",
     "unique-username-generator": "^1.2.0",

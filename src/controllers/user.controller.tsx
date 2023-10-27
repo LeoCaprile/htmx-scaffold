@@ -53,7 +53,6 @@ export const userController = new Elysia().use(ctx).put(
 				.update(user)
 				.set({ name })
 				.where(eq(user.id, ctx.session.user.id));
-			console.log("hola");
 		}
 
 		ctx.set.headers["HX-Trigger"] = "get-session";

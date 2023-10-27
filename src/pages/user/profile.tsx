@@ -10,7 +10,7 @@ export const ProfilePage = new Elysia().use(ctx).get(
 		if (session === null) return;
 
 		const user = session.user;
-		console.log(user);
+
 		return renderPage(
 			"Profile",
 			<div class="grid place-content-center h-100vh">
