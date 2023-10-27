@@ -11,7 +11,6 @@ export const ProfilePage = new Elysia().use(ctx).get(
 
 		const user = session.user;
 		console.log(user);
-
 		return renderPage(
 			"Profile",
 			<div class="grid place-content-center h-100vh">
@@ -53,8 +52,8 @@ export const ProfilePage = new Elysia().use(ctx).get(
 							<input
 								name="profilePicture"
 								class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-								id="small_size"
 								type="file"
+								accept="image/png, image/jpeg"
 							/>
 						</div>
 

@@ -8,7 +8,6 @@
 		"moduleDetection": "force",
 		"allowImportingTsExtensions": true,
 		"noEmit": true,
-		"composite": true,
 		"strict": true,
 		"downlevelIteration": true,
 		"skipLibCheck": true,
@@ -23,6 +22,7 @@
 			"bun-types",
 			"typed-htmx" // types for htmx in JSX
 		],
+		"declaration": false,
 		"noUncheckedIndexedAccess": true,
 		"exactOptionalPropertyTypes": true,
 		"noFallthroughCasesInSwitch": true,

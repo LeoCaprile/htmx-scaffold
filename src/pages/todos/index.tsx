@@ -22,17 +22,8 @@ export const todoPage = new Elysia({ name: "@app/pages" }).use(ctx).get(
 							type="text"
 							name="title"
 						/>
-						<Button
-							hx-post="/api/addTodo"
-							hx-indicator="#spinner"
-							type="submit"
-							className="my-3 ml-3 flex items-center gap-2"
-						>
+						<Button hx-post="/api/addTodo" type="submit" className="my-3 ml-3">
 							Add Todo
-							<div
-								id="spinner"
-								class="htmx-indicator text-xl i-material-symbols-circles-ext-outline animate-spin"
-							></div>
 						</Button>
 					</div>
 				</form>

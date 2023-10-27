@@ -4,12 +4,14 @@ import Elysia from "elysia";
 import { db } from "../db";
 import { authed } from "../auth/middleware";
 import { Navbar } from "../components/Navbar";
+import { utapi } from "../db/files/uploadthing";
 
 export const ctx = new Elysia({
 	name: "@app/ctx",
 })
 	.use(htmlPlugin())
 	.use(authed)
+	.decorate("utapi", utapi)
 	.decorate("db", db)
 	.derive((ctx) => {
 		const renderPage = (title: string, children: JSX.Element) =>
